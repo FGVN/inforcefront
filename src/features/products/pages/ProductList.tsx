@@ -4,10 +4,10 @@ import { addProduct, fetchProducts } from '../productSlice';
 import { RootState } from '../../../app/store';
 import { AppDispatch } from '../../../app/store';
 import { Link } from 'react-router-dom';
-import AddProductModal from './AddProductModal';
-import ConfirmationModal from './ConfirmationModal';
+import ProductModal from '../components/ProductModal';
+import ConfirmationModal from '../components/ConfirmationModal';
 import './ProductList.css';
-import { deleteProduct } from '../../../api/productsApi';
+import { deleteProduct } from '../productSlice';
 import { Product } from '../../../models/product';
 
 const ProductList: React.FC = () => {
@@ -89,13 +89,6 @@ const ProductList: React.FC = () => {
         <div className="product-list">
           {products.map((product) => (
             <div key={product.id} className="product-card">
-              <Link to={`/products/${product.id}`} className="product-link">
-                <img src={product.imageUrl} alt={product.name} className="product-image" />
-                <div className="product-info">
-                  <h3 className="product-name">{product.name}</h3>
-                  <p className="product-price">Left in stock: {product.count}</p>
-                </div>
-              </Link>
               <button
                 className="delete-btn"
                 onClick={() => {
@@ -105,6 +98,13 @@ const ProductList: React.FC = () => {
               >
                 Delete
               </button>
+              <Link to={`/products/${product.id}`} className="product-link">
+                <img src={product.imageUrl} alt={product.name} className="product-image" />
+                <div className="product-info">
+                  <h3 className="product-name">{product.name}</h3>
+                  <p className="product-price">Left in stock: {product.count}</p>
+                </div>
+              </Link>
             </div>
           ))}
         </div>
@@ -120,7 +120,7 @@ const ProductList: React.FC = () => {
         </button>
       </div>
 
-      <AddProductModal
+      <ProductModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onSave={handleAddProduct} // Pass the handler that dispatches the action

@@ -1,28 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { addProduct, updateProduct } from '../productSlice';
+import { useDispatch } from 'react-redux';
+import { addProduct, updateProduct, fetchProductById } from '../productSlice';
+import { Product } from '../../../models/product';
+import './ProductModal.css';
 
-interface Product {
-  id: number;
-  imageUrl: string; // Allow both string and File types
-  name: string;
-  count: number;
-  size: {
-    width: number;
-    height: number;
-  };
-  weight: string;
-  comments?: string[];
-  image?:  File;
-}
-
-interface AddProductModalProps {
+interface ProductModalProps {
   isOpen: boolean;
   onClose: () => void;
   product?: Product; // Optional product for editing
   onSave: (updatedProduct: Product) => void; 
 }
 
-const AddProductModal: React.FC<AddProductModalProps> = ({ isOpen, onClose, product, onSave }) => {
+const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, product, onSave }) => {
   const [formProduct, setFormProduct] = useState<Product>({
     id: product?.id || 0, // Ensure an ID is initialized if product exists
     name: product?.name || '',
@@ -37,6 +26,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ isOpen, onClose, prod
   });
 
   const [error, setError] = useState<string | null>(null);
+  const dispatch = useDispatch();
 
   // Populate form fields when editing
   useEffect(() => {
@@ -93,6 +83,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ isOpen, onClose, prod
       } catch (error) {
         setError('Error saving product');
       }
+
   };
 
   if (!isOpen) return null;
@@ -170,4 +161,4 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ isOpen, onClose, prod
   );
 };
 
-export default AddProductModal;
+export default ProductModal;

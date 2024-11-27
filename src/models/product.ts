@@ -1,3 +1,5 @@
+import { Comment } from './comment'
+
 export interface Product {
     id: number;
     imageUrl: string;
@@ -8,7 +10,7 @@ export interface Product {
       height: number;
     };
     weight: string;
-    comments?: string[];
+    comments?: Comment[];
     image?: File;
 }
   

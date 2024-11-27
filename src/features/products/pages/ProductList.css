@@ -6,15 +6,6 @@
   margin-bottom: 20px;
 }
 
-/* Limit selector styling */
-.limit-selector {
-  display: flex;
-  align-items: center;
-}
-
-.limit-selector label {
-  margin-right: 10px;
-}
 
 /* Add Product Button styling */
 .add-product-btn {
@@ -120,32 +111,6 @@ span {
 
 /* ProductList.css */
 
-/* Modal styles */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 5px;
-  width: 400px;
-}
-
-.modal-actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
 button {
   padding: 10px 20px;
   background-color: #007bff;
@@ -177,10 +142,11 @@ button:hover {
 .add-product-btn:hover {
   background-color: #218838;
 }
+
 .delete-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  position: fixed;
+  top: 50%;
+  right: 10px; /* Place the button on the right */
   background-color: #dc3545;
   color: white;
   border: none;
@@ -202,3 +168,44 @@ button:hover {
 .delete-btn:hover{
   background-color: #c82333;
 }
+
+.limit-selector select:hover,
+.sort-selector select:hover {
+  border-color: #28a745; /* Change border on hover */
+}
+
+.limit-selector select:focus,
+.sort-selector select:focus {
+  border-color: #218838; /* Focus color */
+  box-shadow: 0 0 5px rgba(0, 128, 0, 0.5); /* Focus box shadow */
+}
+/* Styling for the labels */
+.limit-selector label,
+.sort-selector label {
+  font-weight: 600;
+  margin-right: 10px;
+  color: #333;
+}
+
+/* Styling for the overall layout of selectors */
+.limit-selector,
+.sort-selector {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Add Product Button styling */
+.add-product-btn {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-product-btn:hover {
+  background-color: #218838;
+}
+

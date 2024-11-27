@@ -1,0 +1,96 @@
+/* Styling for the product details header */
+.product-details-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  position: absolute;
+  left: 0;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.product-details-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+}
+
+
+
+/* Edit button styling */
+.edit-button {
+  background-color: #f57c00; /* Orange color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.edit-button:hover {
+  background-color: #e65100; /* Darker orange for hover */
+}
+
+/* Additional existing styles */
+.product-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px 0;
+  width: 100%;
+}
+
+.product-details-image {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.product-details-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 10px;
+  max-width: 600px;
+}
+
+.product-details-name {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.product-details-count,
+.product-details-size,
+.product-details-weight {
+  font-size: 1.2em;
+  margin-bottom: 8px;
+}
+
+.product-details-count {
+  color: #28a745;
+}
+
+.product-details-size,
+.product-details-weight {
+  color: #555;
+}

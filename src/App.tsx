@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductList from './features/products/components/ProductList';
+import ProductList from './features/products/pages/ProductList';
 
 function App() {
   return (

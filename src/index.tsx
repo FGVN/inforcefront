@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
-import ProductDetails from './features/products/components/ProductDetails';
+import ProductDetails from './features/products/pages/ProductDetails';
 
 ReactDOM.render(
   <Provider store={store}>
