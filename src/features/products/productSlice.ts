@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { fetchProductsAPI, fetchProductByIdAPI } from '../../api/productsApi';
+import { fetchProductsAPI, fetchProductByIdAPI, updateProductAPI, addProductAPI } from '../../api/productsApi';
 
 // Define the types for product and state
 interface Product {
@@ -12,7 +12,8 @@ interface Product {
     height: number;
   };
   weight: string;
-  comments: string[];
+  comments?: string[];
+  image?: File;
 }
 
 interface ProductsState {
@@ -31,8 +32,8 @@ const initialState: ProductsState = {
 // Async thunk to fetch products
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
-  async ({ page, limit }: { page: number; limit: number }) => {
-    return await fetchProductsAPI(page, limit);
+  async ({ page, limit, sortBy }: { page: number; limit: number, sortBy?: string }) => {
+    return await fetchProductsAPI(page, limit, sortBy);
   }
 );
 
@@ -43,6 +44,35 @@ export const fetchProductById = createAsyncThunk(
     return await fetchProductByIdAPI(id);
   }
 );
+
+export const addProduct = createAsyncThunk(
+  'products/addProduct',
+  async (product: Product) => {
+    return await addProductAPI(product);
+  }
+);
+
+
+// Async thunk to update a product
+export const updateProduct = createAsyncThunk(
+  'products/updateProduct',
+  async (product: Product, { rejectWithValue }) => {
+    try {
+      // Call the API and get the response
+      const updatedProduct = await updateProductAPI(product.id, product);
+      return updatedProduct;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        // If the error is an instance of the Error class, use its message property
+        return rejectWithValue(error.message || 'Failed to update product');
+      } else {
+        // Handle other cases (e.g., non-Error objects)
+        return rejectWithValue('Failed to update product');
+      }
+    }
+  }
+);
+
 
 // Create the slice
 const productsSlice = createSlice({
